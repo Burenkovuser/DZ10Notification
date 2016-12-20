@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 
-// создаем нотификации
+// создаем нотификации с уникальным именем (указатель на строку): название класса которые посылает нотификацию, собстенно суть названия и заканчивается Notification
 extern NSString * const GovernmentTaXLevelDidChangeNotification;
 extern NSString * const GovernmentSalaryDidChangeNotification;
 extern NSString * const GovernmentPensionDidChangeNotification;
 extern NSString * const GovernmentAveragePriceDidChangeNotification;
 
-//применяется для ключа в словаре dictionary
+//применяется для ключа в словаре dictionary, приходящие значение будет лежать по этому ключу
 extern NSString * const GovernmentTaXLevelUserInfoKey;
 extern NSString * const GovernmentSalaryUserInfoKey;
 extern NSString * const GovernmentPensionUserInfoKey;

@@ -12,6 +12,7 @@
 #import "Pensioner.h"
 #import "Bussinesman.h"
 
+// создаем категорию
 @interface AppDelegate ()
 @property (strong,nonatomic) Government* government;
 @end
@@ -48,7 +49,7 @@
     
     doctor1.averagePrice = doctor2.averagePrice = pensioner1.averagePrice = pensioner2.averagePrice = bussnesmam1.averagePrice = bussnesmam2.averagePrice = self.government.averagePrice;
     
-    //меняем значения (до этого переопределили сетеры у правительства)
+    //меняем значения (до этого переопределили сетеры у правительства, установили значения)
     self.government.taxLevel=5.5;
     self.government.salary=1100;
     self.government.averagePrice=15;

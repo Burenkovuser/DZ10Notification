@@ -18,25 +18,39 @@
 {
     self = [super init];
     if (self) {
+        //указатель на нотфикационный центр
         NSNotificationCenter *ns=[NSNotificationCenter defaultCenter];
-        [ns  addObserver:self selector:@selector(salaryChangeNotification:) name:GovernmentSalaryDidChangeNotification object:nil];
-        [ns addObserver:self selector:@selector(averagePriceNotification:) name:GovernmentAveragePriceDidChangeNotification object:nil];
+        //объект который будет принмать уведомления
+        [ns  addObserver:self
+         //метод который будет вызван в момент приемки уведомления
+                selector:@selector(salaryChangeNotification:)
+         //имя уведомления
+                    name:GovernmentSalaryDidChangeNotification
+         //объект который отправил уведомление
+                  object:nil];
+        
+        [ns addObserver:self
+               selector:@selector(averagePriceNotification:)
+                   name:GovernmentAveragePriceDidChangeNotification
+                 object:nil];
     }
     return self;
 }
-// отписываем от нотификации
+// отписываем от нотификации самого себя
 -(void) dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 }
-//обрабатываем нотификацию
+//обрабатываем нотификацию (реализуем методы)
 #pragma mark - Notification
 -(void) salaryChangeNotification: (NSNotification*) notification{
+    // хотим узнать у правительства какая сейчас новая зарплата из словаря по ключу
     NSNumber * value=[notification.userInfo objectForKey:GovernmentSalaryUserInfoKey];
-    
+   //установим значение зарплаты
     float salary=[value floatValue];
-    
+    // тернарный оператор
     NSLog(@"Doctor are %@ happy. Old salary: %@, New salary: %@",(self.salary<salary)?@"":@"NOT",@(self.salary),@(salary));
+     //изменяем свою зарплату на новую что пришла по нотификации
     self.salary=salary;
     
 }

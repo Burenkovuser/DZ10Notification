@@ -9,12 +9,13 @@
 #import "Government.h"
 
 
-//задаем значение такое же как и переменная
+//задаем значение такое же как и переменная (реализуем нотификации)
 NSString * const GovernmentTaXLevelDidChangeNotification=@"GovernmentTaXLevelDidChangeNotification";
 NSString * const GovernmentSalaryDidChangeNotification=@"GovernmentSalaryDidChangeNotification";
 NSString * const GovernmentPensionDidChangeNotification=@"GovernmentPensionDidChangeNotification";
 NSString * const GovernmentAveragePriceDidChangeNotification=@"GovernmentAveragePriceDidChangeNotification";
 
+// приходящие значение будет лежать по этому ключу (реализация)
 NSString * const GovernmentTaXLevelUserInfoKey=@"GovernmentTaXLevelUserInfoKey";
 NSString * const GovernmentSalaryUserInfoKey=@"GovernmentSalaryUserInfoKey";
 NSString * const GovernmentPensionUserInfoKey=@"GovernmentPensionUserInfoKey";
@@ -48,9 +49,11 @@ NSString * const GovernmentAverageUserInfoKey=@"GovernmentAverageUserInfoKey";
 }
 
 -(void) setSalary:(float)salary{
+    //когда изменится значение
     _salary=salary;
+    //создаем словарь по ключу и оболочку делаем флоат
     NSDictionary * dictionary=[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:salary] forKey:GovernmentSalaryUserInfoKey];
-    
+    //каждый раз когда будет менять переменную будем посылать нотификацию
     [[NSNotificationCenter defaultCenter] postNotificationName:GovernmentSalaryDidChangeNotification
                                                         object:nil
                                                       userInfo:dictionary];
